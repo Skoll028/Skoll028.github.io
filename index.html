@@ -1,12 +1,206 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio - Alexander Tatum</title>
+    <title>Alexander Tatum | Digital Platform Engineer & Developer</title>
+        <script>
+                (() => {
+                        const root = document.documentElement;
+                        const colorScheme = window.matchMedia('(prefers-color-scheme: dark)');
+                        let theme = localStorage.getItem('theme');
+
+                        if (!['light', 'dark', 'auto'].includes(theme)) {
+                                theme = 'auto';
+                        }
+
+                        const applyTheme = () => {
+                                const resolvedTheme = theme === 'auto'
+                                        ? (colorScheme.matches ? 'dark' : 'light')
+                                        : theme;
+                                root.setAttribute('data-bs-theme', resolvedTheme);
+                        };
+
+                        applyTheme();
+                        colorScheme.addEventListener('change', () => {
+                                if (theme === 'auto') applyTheme();
+                        });
+
+                        window.addEventListener('DOMContentLoaded', () => {
+                                const themeSelect = document.querySelector('#theme-toggle');
+                                themeSelect.value = theme;
+                                themeSelect.addEventListener('change', () => {
+                                        theme = themeSelect.value;
+                                        localStorage.setItem('theme', theme);
+                                        applyTheme();
+                                });
+                        });
+                })();
+        </script>
+    <!-- Bootstrap 5 CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        .hero-section {
+            background: linear-gradient(135deg, rgba(var(--bs-primary-rgb), 0.12), var(--bs-body-bg));
+            border-bottom: 1px solid var(--bs-border-color);
+            padding: 5rem 0;
+        }
+        .card {
+            background-color: var(--bs-tertiary-bg);
+            border: 1px solid var(--bs-border-color);
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            border-color: var(--bs-primary);
+        }
+        .badge-tech {
+            background-color: var(--bs-primary-bg-subtle);
+            color: var(--bs-primary-text-emphasis);
+            font-weight: 500;
+        }
+        .navbar {
+            background-color: var(--bs-body-bg) !important;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--bs-border-color);
+        }
+        .navbar .form-select {
+            width: auto;
+            height: 40px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Portfolio Under Construction</h1>
-    <p>Checking in from GitHub Pages!</p>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#"><i class="bi bi-code-slash text-primary me-2"></i>Alexander Tatum</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#skills">Tech Stack</a></li>
+                    <li class="nav-item"><a class="nav-link" href="https://github.com/Skoll028" target="_blank"><i class="bi bi-github"></i> GitHub</a></li>
+                    <li class="nav-item ms-lg-3">
+                        <label class="visually-hidden" for="theme-toggle">Color theme</label>
+                        <select class="form-select" id="theme-toggle" aria-label="Color theme">
+                            <option value="auto">System</option>
+                            <option value="light">Light</option>
+                            <option value="dark">Dark</option>
+                        </select>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-section mt-5">
+        <div class="container py-5">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <span class="badge badge-tech mb-3 px-3 py-2 fs-6">Digital Platform Engineer & Front-End Developer</span>
+                    <h1 class="display-4 fw-bold text-body-emphasis mb-3">Building robust systems, automations, and clean web apps.</h1>
+                    <p class="lead text-body-secondary mb-4">Specializing in systems integration, JavaScript frameworks, Google Workspace infrastructure, and workflow automations.</p>
+                    <a href="#projects" class="btn btn-primary btn-lg px-4 me-2">View Projects</a>
+                    <a href="mailto:alexandertatum028@gmail.com" class="btn btn-outline-primary btn-lg px-4">Contact Me</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Projects Grid Section -->
+    <main class="container py-5" id="projects">
+        <div class="row mb-4">
+            <div class="col-12">
+                <h2 class="fw-bold text-body-emphasis mb-2">Featured Projects & Workflows</h2>
+                <p class="text-body-secondary">A selection of web applications, automation pipelines, and system prototypes.</p>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            <!-- Project Card 1: Systems Integration -->
+            <div class="col-md-4">
+                <div class="card h-100 text-body p-3">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <i class="bi bi-diagram-3 fs-2 text-primary"></i>
+                            <span class="badge badge-tech">Automation</span>
+                        </div>
+                        <h3 class="card-title h5 fw-bold text-body-emphasis">Drive-to-Table Indexing Pipeline</h3>
+                        <p class="card-text text-secondary small">Batch-processing Google Apps Script that crawls nested Google Drive folder hierarchies and populates Zapier lookup tables for automated file routing.</p>
+                        <div class="mb-3">
+                            <span class="badge bg-body-secondary border border-secondary text-body me-1">Google Apps Script</span>
+                            <span class="badge bg-body-secondary border border-secondary text-body me-1">Zapier</span>
+                            <span class="badge bg-body-secondary border border-secondary text-body">JavaScript</span>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-transparent border-0 pt-0">
+                        <a href="#" class="btn btn-sm btn-outline-primary w-100"><i class="bi bi-github me-1"></i> View Code & Details</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project Card 2: Web App -->
+            <div class="col-md-4">
+                <div class="card h-100 text-body p-3">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <i class="bi bi-window-sidebar fs-2 text-primary"></i>
+                            <span class="badge badge-tech">Web App</span>
+                        </div>
+                        <h3 class="card-title h5 fw-bold text-body-emphasis">Interactive Dashboard & UI</h3>
+                        <p class="card-text text-secondary small">Responsive front-end application built with modern framework components, clean state management, and optimized UI/UX design.</p>
+                        <div class="mb-3">
+                            <span class="badge bg-body-secondary border border-secondary text-body me-1">React / Angular</span>
+                            <span class="badge bg-body-secondary border border-secondary text-body me-1">TypeScript</span>
+                            <span class="badge bg-body-secondary border border-secondary text-body">Bootstrap</span>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-transparent border-0 pt-0">
+                        <a href="#" class="btn btn-sm btn-outline-primary w-100"><i class="bi bi-box-arrow-up-right me-1"></i> Live Demo & Code</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project Card 3: Game / Interactive Prototype -->
+            <div class="col-md-4">
+                <div class="card h-100 text-body p-3">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <i class="bi bi-controller fs-2 text-primary"></i>
+                            <span class="badge badge-tech">Game Prototype</span>
+                        </div>
+                        <h3 class="card-title h5 fw-bold text-body-emphasis">2D Turn-Based Strategy Engine</h3>
+                        <p class="card-text text-secondary small">Custom turn cycle simulation logic and grid viewports built with Godot 4, exported to web-playable builds.</p>
+                        <div class="mb-3">
+                            <span class="badge bg-body-secondary border border-secondary text-body me-1">Godot 4</span>
+                            <span class="badge bg-body-secondary border border-secondary text-body me-1">GDScript</span>
+                            <span class="badge bg-body-secondary border border-secondary text-body">HTML5</span>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-transparent border-0 pt-0">
+                        <a href="#" class="btn btn-sm btn-outline-primary w-100"><i class="bi bi-play-circle me-1"></i> Play Web Demo</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center py-4 border-top border-secondary mt-5 text-secondary small">
+        <div class="container">
+            <p class="mb-0">&copy; 2026 Alexander Tatum. Built with Bootstrap & GitHub Pages.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
